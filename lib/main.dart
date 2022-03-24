@@ -1,132 +1,43 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
+
+import 'pages/splash_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-const d_green = const Color(0xFF54D3C2);
-
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
+  Color _primaryColor = HexColor('#2E3244');
+  Color _accentColor = HexColor('#516079');
+
+  // Design color
+  // Color _primaryColor= HexColor('#FFC867');
+  // Color _accentColor= HexColor('#FF3CBD');
+
+  // Our Logo Color
+  // Color _primaryColor= HexColor('#D44CF6');
+  // Color _accentColor= HexColor('#5E18C8');
+
+  // Our Logo Blue Color
+  //Color _primaryColor= HexColor('#651BD2');
+  //Color _accentColor= HexColor('#320181');
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Hotels Booking',
-      home: Login(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
-
-class Login extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: LoginCard(),
-    );
-  }
-}
-
-class LoginCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 320,
-        height: 520,
-        child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          color: Colors.white,
-          elevation: 10,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Container(
-                  padding: const EdgeInsets.all(0.0),
-                  width: 20.0,
-                  height: 20.0,
-                ),
-              ),
-              Text(
-                'Inscription',
-                style: GoogleFonts.tenorSans(
-                  fontSize: 20,
-                ),
-              ),
-              Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Entre email',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Entrer un text';
-                        }
-                        return null;
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+      title: 'Flutter Login UI',
+      theme: ThemeData(
+        primaryColor: _primaryColor,
+        accentColor: _accentColor,
+        scaffoldBackgroundColor: Colors.grey.shade100,
+        primarySwatch: Colors.grey,
       ),
-    );
-  }
-} 
-
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  Size get preferredSize => new Size.fromHeight(50);
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      leading: IconButton(
-        icon: Icon(
-          Icons.person,
-          color: Colors.grey[800],
-          size: 30,
-        ),
-        onPressed: null,
-      ),
-      centerTitle: true,
-      title: Text(
-        "Fil d'actu",
-        style: GoogleFonts.nunito(
-          color: Colors.black,
-          fontSize: 22,
-          fontWeight: FontWeight.w800,
-        ),
-      ),
-      actions: [
-        IconButton(
-          icon: Icon(
-            Icons.chat,
-            color: Colors.grey[800],
-            size: 30,
-          ),
-          onPressed: null,
-        ),
-      ],
-      backgroundColor: Colors.white,
-      elevation: 0,
+      home: SplashScreen(title: 'Flutter Login UI'),
     );
   }
 }
+
+
